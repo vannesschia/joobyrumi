@@ -20,8 +20,14 @@ export async function storefront(query, variables = {}){
         //   return 'No results found.';
         // }
         // console.log(inv);
-        const {data} = await res.json();
-        return data;
+
+        // const {data} = await res.json();
+        // return data;
+        if (!res.ok) {
+            // This will activate the closest `error.js` Error Boundary
+            throw new Error('Failed to fetch data')
+        }
+        return res.json()
     } catch (error) {
         console.log(error);
     }

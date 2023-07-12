@@ -1,14 +1,8 @@
-'use client'
 
 import { formatPrice, storefront } from '@/utils'
-import { useState, useEffect } from 'react';
 import Image from 'next/image'
 
-export default function Home() {
-  const [inv, setInv] = useState({});
-  const [isFetched, setIsFetched] = useState(false);
-
-  useEffect(() => {
+export default async function Home() {
     const productsQuery = `
       query Products {
         products(first:100){
@@ -36,21 +30,8 @@ export default function Home() {
         }
       }
     `
-    async function fetchData(){
-      const data = await storefront(productsQuery);
-      //console.log(data);
-      setInv(data);
-      setIsFetched(true);
-  }
-  fetchData();
-  },[])
-  console.log(inv);
-
-  if(!isFetched) return (
-    <div className="flex-1 grid place-items-center">
-      <p className="text-center text-2xl"></p>
-    </div>
-  );
+  const {data} = await storefront(productsQuery);
+  //console.log(data);
   return (
     <>
     {/* <div className="flex-1 grid place-items-center">
@@ -59,7 +40,7 @@ export default function Home() {
     <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
     <div className="mt-0 grid grid-cols-1 gap-x-6 gap-y-10 sm:mt-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
       
-      {inv.products.edges.map((item) => {
+      {data.products.edges.map((item) => {
 
         const product = item.node
         const image = product.images.edges[0].node
@@ -90,42 +71,3 @@ export default function Home() {
     </>
   )
 }
-
-// Home.getInitialProps = async() => {
-//   const data = await storefront(productsQuery)
-//   return {
-//     props: {
-//       products: data,
-//     }
-//   }
-// }
-
-// const gql = String.raw
-
-// const productsQuery = gql`
-//   query getProductsList {
-//     products(first:100){
-//       edges{
-//         node{
-//           title
-//           handle
-//           priceRangeV2{
-//             minVariantPrice{
-//               amount
-//             }
-//           }
-//           description
-//           images(first:2){
-//             edges{
-//               node{
-//                 url
-//                 altText
-//               }
-//             }
-//           }
-//           totalInventory
-//         }
-//       }
-//     }
-//   }
-// `

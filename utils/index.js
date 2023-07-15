@@ -37,13 +37,13 @@ export function formatPrice(number){
     return Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
-        minimumFractionDigits: 0,
+        minimumFractionDigits: 2,
     }).format(number)
 }
 
 export function splitDescription(str){
-    console.log(str);
+    // console.log(str);
     var fields = str.split('~');
-    console.log(fields);
+    // console.log(fields);
     return fields;
 }

@@ -3,6 +3,7 @@ import { formatPrice, storefront } from '@/utils'
 import Image from 'next/image'
 
 export default async function Home() {
+    // /window.location.hash = ""
     const productsQuery = `
       query Products {
         products(first:100){

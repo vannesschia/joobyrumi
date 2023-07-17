@@ -47,3 +47,9 @@ export function splitDescription(str){
     // console.log(fields);
     return fields;
 }
+
+export function splitCookie(str){
+    var fields = str.split('-');
+    // console.log(fields[1]);
+    return fields[1];
+}

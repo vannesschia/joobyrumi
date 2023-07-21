@@ -32,7 +32,7 @@ function footer() {
                 <p className="text-xs">&copy; joobyrumi, all rights reserved</p>
             </div>
             <div>
-                <Link href="/faq" className="text-sm">FAQ</Link>
+                <Link href="/policies/faq" className="text-sm">FAQ</Link>
             </div>
         </div>
     </div>

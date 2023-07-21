@@ -53,3 +53,41 @@ export function splitCookie(str){
     // console.log(fields[1]);
     return fields[1];
 }
+
+export default async function getCartIndex(cartId, productId) {
+    const getCurrCart = `
+    query getCartInv($id: ID!) {
+        cart(id: $id) {
+            id
+            lines(first: 10) {
+            edges {
+                node {
+                quantity
+                merchandise {
+                    ... on ProductVariant {
+                    id
+                    }
+                }
+                }
+            }
+            }
+        }
+        }
+        `
+    
+    let index;
+    //console.log(index);
+    const {data} = await storefront(getCurrCart, {id: "gid://shopify/Cart/c1-" + cartId});
+    console.log(data);
+    if (data.cart.lines.edges.length > 0){
+        for (let i = 0; i < data.cart.lines.edges.length; i++){
+            if(data.cart.lines.edges[i].node.merchandise.id === productId){
+                index = i;
+            }
+        }
+        // console.log(index);
+        if (data.cart.lines.edges[index]){
+            return data.cart.lines.edges[index].node.quantity;
+        }
+    }
+}

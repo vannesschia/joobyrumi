@@ -1,7 +1,7 @@
 import React from "react";
 import Link from 'next/link';
 
-function About(){
+export default function About(){
   return(
     <>
     <div className="grid place-items-center">
@@ -68,4 +68,3 @@ function About(){
     </>
   ) 
 };
-export default About;

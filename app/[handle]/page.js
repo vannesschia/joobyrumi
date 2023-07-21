@@ -1,7 +1,5 @@
-'use client'
-
 import React from 'react'
-import ButtonToCart from './buttonToCart';
+import ButtonToCart from './ButtonToCart';
 import { formatPrice, storefront, splitDescription } from '@/utils';
 
 export default async function Handle({ params }) {
@@ -63,15 +61,17 @@ export default async function Handle({ params }) {
                   <div className="flex">
                     {product.totalInventory === 0 ? 
                       <p className="text-lg font-normal opacity-60 tracking-widest flex w-full justify-center mt-10 my-5">SOLD OUT</p> 
-                      : <ButtonToCart productID={productID}/>}
+                      : <ButtonToCart productID={productID} totalInventory={product.totalInventory}/>}
                   </div>
-                  {splitDescription(product.description).map((parts)=>{
-                      return(
-                          <div>
-                              <p className="text text-light">{parts}</p><br></br>
-                          </div>
-                      )
-                  })}
+                  <div className="mt-2">
+                    {splitDescription(product.description).map((parts)=>{
+                        return(
+                            <div>
+                                <p className="text text-light">{parts}</p><br></br>
+                            </div>
+                        )
+                    })}
+                  </div>
               </div>
               </div>
           </div>

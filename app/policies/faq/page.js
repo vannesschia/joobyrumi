@@ -4,8 +4,8 @@ import React from 'react'
 export default function FAQ() {
   return (
     <>
-    <div>
-        <p className="flex justify-center text-3xl mt-10">
+    <div className="flex justify-center">
+        <p className="text-3xl mt-10">
             FAQ
         </p>
         <div className="mx-32 pt-10">

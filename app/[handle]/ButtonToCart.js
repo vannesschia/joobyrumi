@@ -1,16 +1,15 @@
+'use client'
+
 import React from 'react'
 import { getCookies, setCookie, hasCookie } from 'cookies-next';
-import { splitCookie, storefront } from '@/utils';
+import getCartIndex, { splitCookie, storefront } from '@/utils';
 import { useState } from 'react';
 
-export default function ButtonToCart({productID}) {
+export default function ButtonToCart({productID, totalInventory}) {
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
 
     async function addToCart(){
-        setLoading(true);
-        setTimeout(function () {
-            setLoading(false);
-        }, 1500);
         const noCartMutation = `
         mutation createCart($cartInput: CartInput) {
             cartCreate(input: $cartInput) {
@@ -104,7 +103,13 @@ export default function ButtonToCart({productID}) {
             }
           }
         `
+
+
         if (!hasCookie('CART')){
+            setLoading(true);
+            setTimeout(function () {
+                setLoading(false);
+            }, 1500);
             const { data } = await storefront(noCartMutation, {
                 cartInput: {
                   lines: {
@@ -113,12 +118,26 @@ export default function ButtonToCart({productID}) {
                     }
                 }
             })
-            setCookie('CART', data.cartCreate.cart.id);
-            console.log( data );
+            setCookie('CART', data.cartCreate.cart.id, {httpOnly: true, secure: true, maxAge: 60 * 60 * 24});
         } else {
             const { CART } = getCookies('CART');
-            console.log(getCookies('CART'));
             const cartId = splitCookie(CART);
+            const totalInCart = await getCartIndex(cartId, productID);
+            console.log(totalInCart);
+            // const { CART } = getCookies('CART');
+            // // console.log(getCookies('CART'));
+            // const cartId = splitCookie(CART);
+            if (totalInCart === totalInventory){
+                setError(true);
+                setTimeout(function () {
+                    setLoading(false);
+                }, 6000);
+                return;
+            }
+            setLoading(true);
+            setTimeout(function () {
+                setLoading(false);
+            }, 1500);
             const { data } = await storefront(cartMutation, {
                 cartId: "gid://shopify/Cart/c1-" + cartId,
                 lines: [
@@ -128,17 +147,17 @@ export default function ButtonToCart({productID}) {
                     }
                  ]
             })
-            console.log( data );
         }
     }
 
     return (
-        <>
+        <div className="flex flex-col w-full">
             <button 
             onClick={() => {
                 addToCart();
             }} 
-            className="flex w-full justify-center text-white bg-pink-400 border-0 py-2 mt-10 my-5 focus:outline-none hover:bg-pink-600 rounded-full">
+            disabled={loading}
+            className="flex w-full justify-center text-white bg-pink-400 border-0 py-2 mt-10 focus:outline-none hover:bg-pink-600 rounded-full">
                 {loading ? (
                     <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
@@ -146,6 +165,12 @@ export default function ButtonToCart({productID}) {
                     </svg>
                 ) : <p>Add To Cart</p>}
             </button>
-        </>
+            <div className="w-full mt-1">
+                {(!error && loading) && <p className="text-center w-full text-sm tracking-wide opacity-60">Item Added!</p>}
+            </div>
+            <div className="w-full mt-1">
+                {error && <p className="text-center w-full text-sm tracking-wide opacity-60">Sorry, this item cannot be added!</p>}
+            </div>
+        </div>
     )
 }

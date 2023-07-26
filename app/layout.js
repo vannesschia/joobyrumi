@@ -18,9 +18,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${rubik.variable}`}>
       <body className="flex flex-col h-screen">
-        <Navbar className="flex"/>
-        {children}
-        <Footer className="flex"/>
+          <Navbar className="flex"/>
+          {children}
+          <Footer className="flex"/>
       </body>
     </html>
   )

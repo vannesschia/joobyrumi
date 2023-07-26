@@ -47,7 +47,7 @@ export default async function Handle({ params }) {
               <div className="flex-wrap">
                   {product.images.edges.map((item) => {
                       return(
-                          <img alt={item.node.altText} className="w-full object-cover object-center rounded-lg border border-gray-200" src={item.node.url}/>
+                          <img key={item.node.altText} alt={item.node.altText} className="w-full object-cover object-center rounded-lg border border-gray-200" src={item.node.url}/>
                       )
                   })}
               </div>
@@ -64,9 +64,9 @@ export default async function Handle({ params }) {
                       : <ButtonToCart productID={productID} totalInventory={product.totalInventory}/>}
                   </div>
                   <div className="mt-2">
-                    {splitDescription(product.description).map((parts)=>{
+                    {splitDescription(product.description).map((parts, index)=>{
                         return(
-                            <div>
+                            <div key={index}>
                                 <p className="text text-light">{parts}</p><br></br>
                             </div>
                         )

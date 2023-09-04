@@ -69,7 +69,9 @@ Font-End
 * Javascript
 * HTML
 <br />
+
 Back-End
+
 * Next.js
 * Shoptify API / GraphQL
 

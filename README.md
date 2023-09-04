@@ -114,7 +114,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Vanness Chia - [@linkedlin](https://www.linkedin.com/in/vannesschia) - vannesschia@gmail.com
 
-Project Link: [https://github.com/vannesschia/receiptify_clone](https://github.com/vannesschia/joobyrumi)
+Project Link: [https://github.com/vannesschia/joobyrumi](https://github.com/vannesschia/joobyrumi)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

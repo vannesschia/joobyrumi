@@ -24,7 +24,7 @@
     Ecommerce website for a small handmade jewelry business built on Next.js
     <br />
     <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
+    <a href="https://youtu.be/pegJxmvLTyw">View Demo</a>
   </p>
 </div>
 

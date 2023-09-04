@@ -54,9 +54,9 @@
 <div align="center" style="display: flex; justify-content: space-between;">
 </div>
 
-This ecommerce website was created for the small business, joobyrumi (speializes in handmade jewlery and women-owned). Using calls to the Shoptify API / GraphQL, a user can browse through available products as a whole and indivually, add items into cart, manipulate items within the cart, and proceed to checkout (managed by Shotpify). The website also includes relevant details about the business.
+This ecommerce website was created for the small business, joobyrumi (speializes in handmade jewlery and women-owned). 
 <br />
-Inspired by Michelle Liu's very popular [Receiptify](https://receiptify.herokuapp.com/), Receiptify Clone served as a tool to learn React, Javascript, CSS, and HTML.
+Using calls to the Shoptify API / GraphQL, a user can browse through available products as a whole and indivually, add items into cart, manipulate items within the cart, and proceed to checkout (managed by Shotpify). The website also includes relevant details about the business.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

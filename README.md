@@ -54,9 +54,9 @@
 <div align="center" style="display: flex; justify-content: space-between;">
 </div>
 
-This ecommerce website was created for the small business, joobyrumi (speializes in handmade jewlery and women-owned). 
+This ecommerce website was created for a small jewelry business, <a href="https://www.instagram.com/joobyrumi">JoobyRumi</a>. 
 <br />
-Using calls to the Shoptify API / GraphQL, a user can browse through available products as a whole and indivually, add items into cart, manipulate items within the cart, and proceed to checkout (managed by Shotpify). The website also includes relevant details about the business.
+All essential, in-built functionalities were created through calls to the Shopify API with GraphQL. Functionalities include allowing a user can browse through available products as a whole and indivually, add items into cart, manipulate items within the cart, complete comission forms with submitted data sent directly to the owner's email, and make secure payments. The website also includes relevant details about the business.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
